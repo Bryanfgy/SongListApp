@@ -2,7 +2,9 @@ package com.example.songlistapp;
 
 import androidx.annotation.NonNull;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
     private int id;
     private String SongTitle;
     private String Artist;

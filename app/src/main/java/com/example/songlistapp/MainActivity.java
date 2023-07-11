@@ -2,6 +2,7 @@ package com.example.songlistapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup rating;
     EditText songTitle, nameArtist, date;
     ArrayList<String> ArrayList;
+    ArrayList<Task> al;
     ArrayAdapter<String> aAdapter;
+    ArrayAdapter<Task> aa;
     ListView lv;
 
     @Override
@@ -32,10 +35,11 @@ public class MainActivity extends AppCompatActivity {
         songTitle = findViewById(R.id.etTitle);
         nameArtist = findViewById(R.id.etSinger);
         date = findViewById(R.id.etDate);
-        ArrayList = new ArrayList<String>();
-        aAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,ArrayList);
         lv = findViewById(R.id.List);
-        lv.setAdapter(aAdapter);
+
+        al = new ArrayList<>();
+        aa = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,al);
+        lv.setAdapter(aa);
 
 
         btnInsert.setOnClickListener(new View.OnClickListener(){
@@ -77,14 +81,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 DatabaseHelper db = new DatabaseHelper(MainActivity.this);
-                java.util.ArrayList<Task> data = db.getTasks();
-                db.close();
-                String test = "";
-                for(int i = 0; i < data.size(); i++){
-                    test += data.get(i) + "\n\n";
-                }
-                ArrayList.add(test+"\n");
-                aAdapter.notifyDataSetChanged();
+//                java.util.ArrayList<Task> data = db.getTasks();
+//                db.close();
+//                String test = "";
+//                for(int i = 0; i < data.size(); i++){
+//                    test += data.get(i) + "\n\n";
+//                }
+//                ArrayList.add(test+"\n");
+//                aAdapter.notifyDataSetChanged();
+//                al.clear();
+//                al.addAll(db.getTasks());
+//                aa.notifyDataSetChanged();
+
+                Intent i = new Intent(MainActivity.this,
+                        ShowList.class);
+                i.putExtra("Database", db.getTasks() );
+                startActivity(i);
+
+
             }
         });
 

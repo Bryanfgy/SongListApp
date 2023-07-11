@@ -63,8 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_Name, Singer);
         // Store the column name as key and the date as value
         values.put(COLUMN_DATE, date);
-        // Store the column name as key and the date as value
-        values.put(COLUMN_RATE, rate);
+        // Store the column name as key and the date as value        values.put(COLUMN_RATE, rate);
         // Insert the row into the TABLE_SONGLIST
         db.insert(TABLE_SONGLIST, null, values);
         // Close the database connection
