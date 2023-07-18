@@ -10,6 +10,17 @@
         android:layout_height="wrap_content"
         android:text="Show all songs with 5 Stars" />
 
+    <Button
+        android:id="@+id/returnBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return" />
+
+    <Spinner
+        android:id="@+id/dateSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <ListView
         android:id="@+id/List"
         android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,24 +17,41 @@ import java.util.Collection;
 
 
 public class ShowList extends AppCompatActivity {
-    Button Fivestars;
+    Button Fivestars, returnbtn;
     ListView lv;
     ArrayList<Task> al;
-    ArrayAdapter<Task> aa;
+    ArrayList<String> yearArray;
+    ArrayList<String> SpinnerList;
+    Spinner datespin;
     CustomAdapter adapter;
-
-    ArrayList task;
+    ArrayAdapter<String> yearAdapter;
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.showlist);
 
-        Fivestars = findViewById(R.id.Fivestars);
-        lv = findViewById(R.id.List);
+        String order =" ASC";
+        DatabaseHelper db = new DatabaseHelper(ShowList.this);
+        yearArray = db.populateSpinner();
+        SpinnerList = new ArrayList<>();
+        SpinnerList.add("Select year to filter");
+        for (String year : yearArray) {
+            SpinnerList.add(String.valueOf(year));
+        }
+        yearAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, SpinnerList);
+        yearAdapter.notifyDataSetChanged();
+        db.close();
 
+        datespin = findViewById(R.id.dateSpinner);
+        Fivestars = findViewById(R.id.Fivestars);
+        returnbtn = findViewById(R.id.returnBtn);
+        lv = findViewById(R.id.List);
         al = new ArrayList<>();
-//        aa = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, al);
         adapter =  new CustomAdapter(this,R.layout.custom_row,al);
+
+
+        datespin.setAdapter(yearAdapter);
+        //database setup
         lv.setAdapter(adapter);
 
             DatabaseHelper dbh = new DatabaseHelper(ShowList.this);
@@ -43,6 +61,8 @@ public class ShowList extends AppCompatActivity {
             dbh.close();
 
         adapter.notifyDataSetChanged();
+
+        
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -66,6 +86,15 @@ public class ShowList extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
+        returnbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    finish();
+            }
+        });
+
+
     }
 
 
@@ -78,4 +107,6 @@ public class ShowList extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         dbh.close();
     }
+
+
 }

@@ -84,8 +84,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int id = cursor.getInt(0);
                 String title = cursor.getString(1);
                 String singer = cursor.getString(2);
-//                int year = cursor.getInt(3);
-//                int stars = cursor.getInt(4);
                 String year = cursor.getString(3);
                 int stars = cursor.getInt(4);
                 Task obj = new Task(id, title, singer, year, stars);
@@ -110,8 +108,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int id = cursor.getInt(0);
                 String title = cursor.getString(1);
                 String singer = cursor.getString(2);
-//                int year = cursor.getInt(3);
-//                String stars = cursor.getString(4);
                 String year = cursor.getString(3);
                 int stars = cursor.getInt(4);
                 Task obj = new Task(id, title, singer, year, stars);
@@ -146,5 +142,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public ArrayList<String> populateSpinner(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns ={COLUMN_DATE};
+        String sort = COLUMN_DATE+" ASC";
+        Cursor cursor = db.query(true, TABLE_SONGLIST, columns, null, null, null, null, sort, null);
+        ArrayList<String> yearList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                String year = cursor.getString(0);
+                yearList.add(year);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return yearList;
+    }
 
 }
