@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
     Button btnInsert,btnGetdata;
     RadioGroup rating;
     EditText songTitle, nameArtist, date;
-    ArrayList<String> ArrayList;
-    ArrayList<Task> al;
-    ArrayAdapter<String> aAdapter;
-    ArrayAdapter<Task> aa;
-    ListView lv;
+//    ArrayList<String> ArrayList;
+//    ArrayList<Task> al;
+//    ArrayAdapter<String> aAdapter;
+//    ArrayAdapter<Task> aa;
+//    ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
         songTitle = findViewById(R.id.etTitle);
         nameArtist = findViewById(R.id.etSinger);
         date = findViewById(R.id.etDate);
-        lv = findViewById(R.id.List);
+//        lv = findViewById(R.id.List);
 
-        al = new ArrayList<>();
-        aa = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,al);
-        lv.setAdapter(aa);
+//        al = new ArrayList<>();
+//        aa = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,al);
+//        lv.setAdapter(aa);
 
 
         btnInsert.setOnClickListener(new View.OnClickListener(){
@@ -89,16 +89,14 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //                ArrayList.add(test+"\n");
 //                aAdapter.notifyDataSetChanged();
+
+
 //                al.clear();
 //                al.addAll(db.getTasks());
 //                aa.notifyDataSetChanged();
 
-                Intent i = new Intent(MainActivity.this,
-                        ShowList.class);
-                i.putExtra("Database", db.getTasks() );
+                Intent i = new Intent(MainActivity.this, ShowList.class);
                 startActivity(i);
-
-
             }
         });
 

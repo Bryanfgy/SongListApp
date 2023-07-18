@@ -9,9 +9,9 @@ public class Task implements Serializable {
     private String SongTitle;
     private String Artist;
     private String date;
-    private String Rate;
+    private int Rate;
 
-    public Task(int id, String title,String artist, String date, String rate) {
+    public Task(int id, String title,String artist, String date, int rate) {
         this.id = id;
         this.SongTitle = title;
         this.Artist  = artist;
@@ -22,17 +22,17 @@ public class Task implements Serializable {
     public int getId() { return id; }
 
     public String getSongTitle() { return SongTitle; }
-
+    public void setSongTitle(String SongTitle){ this.SongTitle = SongTitle;}
     public String getArtist() {return  Artist;}
-
+    public void setArtist(String Artist){ this.Artist = Artist;}
     public String getDate() { return date;}
-
-    public String getRate() {return  Rate;}
-
+    public void setDate(String date){ this.date = date;}
+    public int getRate() {return  Rate;}
+    public void setRate(int Rate){ this.Rate = Rate;}
     @NonNull
     @Override
     public String toString() {
-        return id + "\n" + SongTitle + "\n" + Artist + "\n" + date + "\n" + Rate;
+        return SongTitle + "\n" + Artist + "-" + date + "\n" + Rate;
     }
 
 

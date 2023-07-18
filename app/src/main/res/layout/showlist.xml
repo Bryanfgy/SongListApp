@@ -10,20 +10,9 @@
         android:layout_height="wrap_content"
         android:text="Show all songs with 5 Stars" />
 
-    <ScrollView
+    <ListView
+        android:id="@+id/List"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <ListView
-                android:id="@+id/List"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
