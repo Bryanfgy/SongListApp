@@ -32,17 +32,17 @@ public class ShowList extends AppCompatActivity {
         lv = findViewById(R.id.List);
 
         al = new ArrayList<>();
-        aa = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, al);
-//        adapter =  new CustomAdapter(this,R.layout.custom_row,al);
-        lv.setAdapter(aa);
+//        aa = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, al);
+        adapter =  new CustomAdapter(this,R.layout.custom_row,al);
+        lv.setAdapter(adapter);
 
             DatabaseHelper dbh = new DatabaseHelper(ShowList.this);
             al.clear();
             al.addAll(dbh.getTasks());
-            aa.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
             dbh.close();
 
-        aa.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -63,7 +63,7 @@ public class ShowList extends AppCompatActivity {
                 DatabaseHelper dbh = new DatabaseHelper(ShowList.this);
                 al.clear();
                 al.addAll(dbh.getTasksByStars("5"));
-                aa.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
         });
     }
@@ -75,7 +75,7 @@ public class ShowList extends AppCompatActivity {
         DatabaseHelper dbh = new DatabaseHelper(ShowList.this);
         al.clear();
         al.addAll(dbh.getTasks());
-        aa.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
         dbh.close();
     }
 }

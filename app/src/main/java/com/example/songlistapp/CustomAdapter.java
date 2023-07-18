@@ -40,7 +40,7 @@ public class CustomAdapter extends ArrayAdapter {
         textViewHeader.setText(currentVersion.getSongTitle());
         textViewBody.setText(currentVersion.getArtist());
         textViewDate.setText(currentVersion.getDate());
-        textViewRating .setText(currentVersion.getRate());
+        textViewRating.setText(String.valueOf(currentVersion.getRate()));
 
         return rowView;
     }
